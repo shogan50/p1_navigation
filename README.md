@@ -53,4 +53,11 @@ python -m ipykernel install --user --name drlnd --display-name "drlnd"
 
 5. Before running code in a notebook, change the kernel to match the `drlnd` environment by using the drop-down `Kernel` menu. 
 
+6. Refer to Navigation.ipynb.
+
+If you are running on a machine without a display, you will need to set a no_graphics = True flag when the environment is instantiated, but this will make the output pretty boring. 
+
+If you'd like to see the untrained agent blunder around the environment, uncomment the code under section 3.
+
+The
 

@@ -39,3 +39,8 @@ The model consists of 3 linear layers.  The first layer takes the 37 inputs and 
 
 ## Other observations
 It was interesting for me to discover that my GPU was running at 1% during training and that while I din't do a head to head comparison, training on my laptop with a GPU and on my Linux workstation without a GPU were not obviously taking different amounts of time to learn.  I hypothesize that this rather small network doesn't benifit from the GPU and that the unity environment is the bottleneck.  One thing that would be intresting to try, is to see if it is possible to run two agents and instantiate two environments in parallel training only consumes about 50% of my CPU resources. 
+
+## Potential Improvements
+1. Explore the reason that a low, but finite epsilon value yields the best results.
+2. Try prioritized experience replay.
+3. Try Dualing DQN.

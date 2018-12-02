@@ -11,14 +11,14 @@ The code for the agent and model is very similar to previous lessons.  Essential
 ![Epsilon pt1](https://github.com/shogan50/p1_navigation/blob/master/eps_ptone.PNG)
 
 ## Learning Algorithm
-The Banana agent learning algorithm is basic Deep Q learning, although the network isn't very deep at three total layers.   
+The Banana agent learning algorithm is basic Deep Q learning, although the network isn't very deep at three total layers.  It utilizes experience replay and periodic updates. I haven't explored this, but apparently in the absense of some sort of mechanisms like experience replay and periodic updates, DQN's haven't been very successful.  The idea is that you decouple network update step from the experience step.  To perform experience replay, the agent's experiences are stored at each time step in a buffer.  During learning, Q-Learning updates are applied to the samples of experiences drawn uniformly from the buffer.  The weights of the network are periodically updated.  in this case every 4th step.
 
 ## Hyperparameters
 What was enlightening to me is that, really low epsilon values result in the fastest training.  I guess that since this environment isn't like a maze, this agent learns best with a greedy policy rather than an epsilon greedy policy. By not being like a maze, I mean the environment doesn't have fixed geometry that the agent really needs to learn to navigate, for instance like cliff walking.  The elments of the environment that the agent needs to navigate, so to speak (location of bananas), are randomly placed during each episode. 
 
 In order to save myself time finding good hyperparameters, I did some training in loop, randomly selecting some hyper parameters including epsilon start and let it run un-attended over night. The starting epsilon value was one of the parameters. The minimum starting epsilon was clipped at .1 and all of the trials that started at that value achieved the requisite 13+ mean over 100 episodes in about 300 episodes.  
 
-Setting epsilon to zero however slowed learning.  Once it reach some threshold, around 500 episodes, its learning seemed to take of at the same rate as epsilon_start = .1.  The following plot of rewards was run with epsilon at zero. (layer one nodes: 243, layer 2 nodes: 19)  I don't have an explanation for why some randomness is necessary.  It is possible that it is related to that network architecture, but my first guess is that non-zero epsilon helps overcome the weights initialization.  It would be interesting to play with two things: 1. other initializations, perhaps all zeros.  2. Staring with a high epsilon, but substantially decaying say to approaching zero in 100 episodes.
+Setting epsilon to zero however slowed learning.  Once it reach some threshold, around 500 episodes, its learning seemed to take of at the same rate as epsilon_start = 0.1.  The following plot of rewards was run with epsilon at zero. (layer one nodes: 243, layer 2 nodes: 19)  I don't have an explanation for why some randomness is necessary.  It is possible that it is related to that network architecture, but my first guess is that non-zero epsilon helps overcome the weights initialization.  It would be interesting to play with two things: 1. other initializations, perhaps all zeros.  2. Staring with a high epsilon, but substantially decaying say to approaching zero in 100 episodes.
 
 ![Epsilon Zero](https://github.com/shogan50/p1_navigation/blob/master/eps_zero.PNG)
 
@@ -39,7 +39,3 @@ The model consists of 3 linear layers.  The first layer takes the 37 inputs and 
 
 ## Other observations
 It was interesting for me to discover that my GPU was running at 1% during training and that while I din't do a head to head comparison, training on my laptop with a GPU and on my Linux workstation without a GPU were not obviously taking different amounts of time to learn.  I hypothesize that this rather small network doesn't benifit from the GPU and that the unity environment is the bottleneck.  One thing that would be intresting to try, is to see if it is possible to run two agents and instantiate two environments in parallel training only consumes about 50% of my CPU resources. 
-
-
-
-

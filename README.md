@@ -24,7 +24,7 @@ The task is episodic, and in order to solve the environment, your agent must get
 
 ### Getting Started
 
-#### Dependancies
+#### Dependencies
 1. Create (and activate) a new environment with Python 3.6.
 	- __Linux__ or __Mac__: 
 	```bash
@@ -57,7 +57,7 @@ python -m ipykernel install --user --name drlnd --display-name "drlnd"
 
 If you are running on a machine without a display, you will need to set a no_graphics = True flag when the environment is instantiated, but this will make the output pretty boring. 
 
-If you'd like to see the untrained agent blunder around the environment, uncomment the code under section 3.
+If you'd like to see the untrained agent blunder around the environment, un-comment the code under section 3.
 
 The
 

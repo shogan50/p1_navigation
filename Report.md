@@ -18,19 +18,19 @@ What was enlightening to me is that, really low epsilon values result in the fas
 
 In order to save myself time finding good hyperparameters, I did some training in loop, randomly selecting some hyper parameters including epsilon start and let it run un-attended over night. The starting epsilon value was one of the parameters. The minimum starting epsilon was clipped at .1 and all of the trials that started at that value achieved the requisite 13+ mean over 100 episodes in about 300 episodes.  
 
-Setting epsilon to zero however slowed learning.  Once it reach some threshold, around 100 episodes, it learning seemed to take of at the same rate as epsilon_start = .1.  The following plot of rewards was run with epsilon at zero. (layer one nodes: 243, layer 2 nodes: 19)  I don't have an explanation for why some randomness is necessary.  It is possible that it is related to that network architecture, but my first guess is that non-zero epsilon helps overcome the weights initialization.  It would be interesting to play with two things: 1. other initializations, perhaps all zeros.  2. Staring with a high epsilon, but substantially decaying say to approaching zero in 100 episodes.
+Setting epsilon to zero however slowed learning.  Once it reach some threshold, around 500 episodes, its learning seemed to take of at the same rate as epsilon_start = .1.  The following plot of rewards was run with epsilon at zero. (layer one nodes: 243, layer 2 nodes: 19)  I don't have an explanation for why some randomness is necessary.  It is possible that it is related to that network architecture, but my first guess is that non-zero epsilon helps overcome the weights initialization.  It would be interesting to play with two things: 1. other initializations, perhaps all zeros.  2. Staring with a high epsilon, but substantially decaying say to approaching zero in 100 episodes.
 
 ![Epsilon Zero](https://github.com/shogan50/p1_navigation/blob/master/eps_zero.PNG)
 
 Other hyper parameters were played with manually (not in the loop described above), but in the end left the same as in the exercise they came from.  All changes seemed to decrease learning.
-
+```
 BUFFER_SIZE = int(1e5)  # replay buffer size
 BATCH_SIZE = 64         # minibatch size
 GAMMA = 0.99            # discount factor
 TAU = 1e-3              # for soft update of target parameters
 LR = 5e-4               # learning rate 
 UPDATE_EVERY = 4        # how often to update the network
-
+```
 
 ## Model Architecture
 Not much else interesting came out of the random hyper parameters except that it is pretty insensitive to the size of the two fully connected layers.

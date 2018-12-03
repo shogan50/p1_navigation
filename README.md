@@ -59,5 +59,9 @@ If you are running on a machine without a display, you will need to set a no_gra
 
 If you'd like to see the untrained agent blunder around the environment, un-comment the code under section 3.
 
-The
+The first cell of code in section 4.1 is where we train the agent with hyper parameters previously determined through manually blundering around with the or running the loop in 4.2.  This setup meets the assignment criteria of +13 reward averaged over 100 episodes.
+
+Finally, you can watch the trained agent running parameters from 4.1.  
+
+
 

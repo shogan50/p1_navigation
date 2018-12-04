@@ -76,9 +76,16 @@ class Agent():
 
         # Epsilon-greedy action selection
         if random.random() > eps:
-            return np.argmax(action_values.cpu().data.numpy()).astype('int') #int32 here makes unity env happy
+#             return np.argmax(action_values.cpu().data.numpy()).astype('int') #int32 here makes unity env happy
+            return int(np.argmax(action_values.cpu().data.numpy()))   #try casting this to native python int to make unity happy
         else:
-            return random.choice(np.arange(self.action_size)).astype('int')
+#             return random.choice(np.arange(self.action_size)).astype('int')
+            return int(random.choice(np.arange(self.action_size)))    #try casting this to native python int to make unity happy
+
+########################
+# the commented return lines are believed to cause errors' in Udacity reviewer's hardware.  int64 that comes out of the argmax function
+# by default appears to have cause the same issues on my own hardware.  Casting to int32 fixed that for me.  Now trying native python int
+########################
 
     def learn(self, experiences, gamma):
         """Update value parameters using given batch of experience tuples.
